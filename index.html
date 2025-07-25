@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nkanta Aniebiet Pius - Portfolio</title>
+    <link href="https://fonts.cdnfonts.com/css/sf-pro-display?styles=59278,59279,59280" rel="stylesheet" media="all" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Logo */
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 24px;
+            font-weight: 700;
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            z-index: 1002;
+        }
+
+        .logo:hover {
+            color: #4CAF50;
+        }
+
+        /* Dynamic Island Navigation */
+        .dynamic-island {
+            position: sticky;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 12px 30px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: fit-content;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-menu li a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu li a:hover {
+            color: #4CAF50;
+        }
+
+        /* Mobile Menu */
+        .burger-menu {
+            display: none;
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .burger-menu:hover {
+            background: rgba(76, 175, 80, 0.2);
+        }
+
+        .burger-lines {
+            width: 22px;
+            height: 2px;
+            background: #ffffff;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .burger-lines::before,
+        .burger-lines::after {
+            content: '';
+            position: absolute;
+            width: 22px;
+            height: 2px;
+            background: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        .burger-lines::before {
+            top: -7px;
+        }
+
+        .burger-lines::after {
+            top: 7px;
+        }
+
+        .burger-menu.active .burger-lines {
+            background: transparent;
+        }
+
+        .burger-menu.active .burger-lines::before {
+            transform: rotate(45deg);
+            top: 0;
+        }
+
+        .burger-menu.active .burger-lines::after {
+            transform: rotate(-45deg);
+            top: 0;
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        .mobile-nav.active {
+            display: flex;
+        }
+
+        .mobile-nav-menu {
+            list-style: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .mobile-nav-menu li {
+            margin: 25px 0;
+        }
+
+        .mobile-nav-menu li a {
+            color: #000000;
+            text-decoration: none;
+            font-size: 28px;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-nav-menu li a:hover {
+            color: #4CAF50;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: #ffffff;
+            color: #000000;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            padding-top: 60px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 0 20px;
+            animation: fadeInUp 1s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 70px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .profile-image:hover {
+            transform: scale(1.05);
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            letter-spacing: -1.5px;
+        }
+
+        .hero h2 {
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 30px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Sections */
+        .section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section h2 {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            text-align: center;
+            letter-spacing: -1.5px;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 25px;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .skill-category h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 8px 0;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .skill-list li::before {
+            content: '✔';
+            margin-right: 10px;
+            color: #4CAF50;
+        }
+
+        /* Experience Section */
+        .experience-item {
+            margin-bottom: 60px;
+            padding: 40px;
+            border-radius: 20px;
+            background: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+
+        .experience-title h3 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .experience-company {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .experience-date {
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .experience-description {
+            list-style: none;
+        }
+
+        .experience-description li {
+            padding: 8px 0;
+            font-size: 15px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .experience-description li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #4CAF50;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .project-card p {
+            font-size: 15px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tech-badge {
+            background: #f0f0f0;
+            color: #000000;
+            font-size: 13px;
+            padding: 6px 12px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .tech-progress {
+            width: 50px;
+            height: 5px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .tech-progress-bar {
+            height: 100%;
+            background: #4CAF50;
+            transition: width 0.3s ease;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-info p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            padding: 15px 35px;
+            background: #000000;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: #4CAF50;
+            transform: translateY(-3px);
+        }
+
+        .contact-link svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            fill: #ffffff;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dynamic-island {
+                display: none;
+            }
+
+            .burger-menu {
+                display: flex;
+            }
+
+            .logo {
+                font-size: 50px;
+                top: 10px;
+                left: 10px;
+                z-index: 1002;
+            }
+
+            .hero {
+                padding-top: 50px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero h2 {
+                font-size: 22px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .profile-image {
+                width: 200px;
+                height: 200px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 20px;
+            }
+
+            .skill-category h4 {
+                font-size: 18px;
+            }
+
+            .skill-list li {
+                font-size: 14px;
+            }
+
+            .experience-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .experience-date {
+                text-align: left;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+                gap: 15px;
+                justify-items: center;
+            }
+
+            .contact-link {
+                padding: 12px 25px;
+                font-size: 14px;
+            }
+
+            .contact-link svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            .section {
+                padding: 80px 15px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo -->
+    <a href="#home" class="logo">Aniethegreatest</a>
+
+    <!-- Dynamic Island Navigation -->
+    <nav class="dynamic-island">
+        <ul class="nav-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="burger-menu" onclick="toggleMenu()">
+        <div class="burger-lines"></div>
+    </div>
+
+    <div class="mobile-nav">
+        <ul class="mobile-nav-menu">
+            <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+            <li><a href="#about" onclick="toggleMenu()">About</a></li>
+            <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+            <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="profile-image">
+                <img src="memoji.png" alt="Profile Image">
+            </div>
+            <h1>Nkanta Aniebiet Pius</h1>
+            <h2>Full-Stack Developer & UI/UX Designer</h2>
+            <p>Dynamic Computer Science graduate with expertise in UI/UX design, full-stack development, and data analysis, delivering user-centric solutions for SMEs and academic systems.</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2>About</h2>
+        <div class="about-grid">
+            <div class="about-text">
+                <h3>Hello, I'm Nkanta</h3>
+                <p>A passionate Computer Science graduate from Caleb University with Second-Class Upper Honors. I specialize in creating seamless user experiences through thoughtful UI/UX design and robust full-stack development.</p>
+                <p>My expertise spans from machine learning implementation to secure web applications, with a strong focus on data analysis and cybersecurity. I've successfully led projects ranging from phishing detection systems to e-commerce platforms.</p>
+                <p>Currently serving as a Store Operations Assistant at Studio Press Nigeria Ltd, where I manage inventory systems using SAP while continuing to work on innovative tech solutions.</p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Programming</h4>
+                    <ul class="skill-list">
+                        <li>Python (pandas, NumPy, NLTK)</li>
+                        <li>Django & Streamlit</li>
+                        <li>JavaScript, HTML, CSS</li>
+                        <li>PostgreSQL</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>Design & Tools</h4>
+                    <ul class="skill-list">
+                        <li>Figma & UI/UX Design</li>
+                        <li>Machine Learning</li>
+                        <li>SAP Systems</li>
+                        <li>Git & GitHub</li>
+                    </ul>
+                </div>
+                <div class="skill-category">
+                    <h4>Specializations</h4>
+                    <ul class="skill-list">
+                        <li>Data Analysis</li>
+                        <li>Cybersecurity</li>
+                        <li>Human-Computer Interaction</li>
+                        <li>Full-Stack Development</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <h2>Experience</h2>
+        <div class="experience-item">
+            <div class="experience-header">
+                <div class="experience-title">
+                    <h3>Store Operations Assistant (NYSC Corper)</h3>
+                    <div class="experience-company">Studio Press Nigeria Ltd, Lagos</div>
+                </div>
+                <div class="experience-date">March 2025 – Present</div>
+            </div>
+            <ul class="experience-description">
+                <li>Manage inventory and approve orders using SAP, ensuring accurate stock movement</li>
+                <li>Validate SMRs and GRNs with 98% accuracy, minimizing inventory discrepancies</li>
+                <li>Coordinate with procurement and production teams to align orders with manufacturing schedules</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <div class="experience-header">
+                <div class="experience-title">
+                    <h3>Lead UI/UX Developer</h3>
+                    <div class="experience-company">ZestRein Ltd, Lagos</div>
+                </div>
+                <div class="experience-date">July 2024 – October 2024</div>
+            </div>
+            <ul class="experience-description">
+                <li>Spearheaded UI/UX design projects aimed at empowering SMEs</li>
+                <li>Oversaw the entire product development lifecycle, from ideation to deployment</li>
+                <li>Drafted Product Requirement Documents (PRD) to guide development</li>
+                <li>Assigned roles and responsibilities to team members to ensure project milestones were met</li>
+            </ul>
+        </div>
+        <div class="experience-item">
+            <div class="experience-header">
+                <div class="experience-title">
+                    <h3>SIWES Intern</h3>
+                    <div class="experience-company">Nigerian Breweries Plc</div>
+                </div>
+                <div class="experience-date">May 2023 – November 2023</div>
+            </div>
+            <ul class="experience-description">
+                <li>Assisted in hardware maintenance, networking tasks, and inventory management</li>
+                <li>Gained hands-on experience in IT support and system operations within a large industrial environment</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>Website Phishing Detection System</h3>
+                <p>Developed a comprehensive phishing detection system using Django with machine learning algorithms including Logistic Regression and Random Forest. Implemented robust security measures and scalable architecture.</p>
+                <div class="tech-stack">
+                    <div class="tech-badge">Django <div class="tech-progress"><div class="tech-progress-bar" style="width: 70%"></div></div></div>
+                    <div class="tech-badge">Python <div class="tech-progress"><div class="tech-progress-bar" style="width: 60%"></div></div></div>
+                    <div class="tech-badge">Machine Learning <div class="tech-progress"><div class="tech-progress-bar" style="width: 50%"></div></div></div>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Breast Cancer Detection System</h3>
+                <p>Created a full-stack machine learning application for breast cancer prediction. Handled both frontend and backend development to deliver an accurate diagnostic tool with user-friendly interface.</p>
+                <div class="tech-stack">
+                    <div class="tech-badge">Python <div class="tech-progress"><div class="tech-progress-bar" style="width: 65%"></div></div></div>
+                    <div class="tech-badge">Django <div class="tech-progress"><div class="tech-progress-bar" style="width: 55%"></div></div></div>
+                    <div class="tech-badge">Figma <div class="tech-progress"><div class="tech-progress-bar" style="width: 40%"></div></div></div>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Customer Segmentation Analysis</h3>
+                <p>Built a comprehensive customer segmentation tool using Python and pandas, analyzing purchase data based on RFM metrics. Created interactive visualizations to help businesses understand their customer base.</p>
+                <div class="tech-stack">
+                    <div class="tech-badge">Python <div class="tech-progress"><div class="tech-progress-bar" style="width: 80%"></div></div></div>
+                    <div class="tech-badge">Pandas <div class="tech-progress"><div class="tech-progress-bar" style="width: 70%"></div></div></div>
+                    <div class="tech-badge">Streamlit <div class="tech-progress"><div class="tech-progress-bar" style="width: 50%"></div></div></div>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Online Student Storage Application</h3>
+                <p>Designed and implemented a secure file storage system using Django with cryptography for data encryption. Focused on both UI/UX design and backend security features.</p>
+                <div class="tech-stack">
+                    <div class="tech-badge">Django <div class="tech-progress"><div class="tech-progress-bar" style="width: 75%"></div></div></div>
+                    <div class="tech-badge">Python <div class="tech-progress"><div class="tech-progress-bar" style="width: 60%"></div></div></div>
+                    <div class="tech-badge">Figma <div class="tech-progress"><div class="tech-progress-bar" style="width: 45%"></div></div></div>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Sales Dashboard with Streamlit</h3>
+                <p>Developed an interactive dashboard for sales data visualization with filtering capabilities by product category and date range. Enabled real-time performance tracking and trend analysis.</p>
+                <div class="tech-stack">
+                    <div class="tech-badge">Streamlit <div class="tech-progress"><div class="tech-progress-bar" style="width: 70%"></div></div></div>
+                    <div class="tech-badge">Python <div class="tech-progress"><div class="tech-progress-bar" style="width: 65%"></div></div></div>
+                    <div class="tech-badge">Pandas <div class="tech-progress"><div class="tech-progress-bar" style="width: 60%"></div></div></div>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>E-Commerce Order Tracking System</h3>
+                <p>Contributed to the UI/UX design of a Jumia-inspired e-commerce platform with comprehensive order tracking functionality. Focused on creating optimal user experience and interface design.</p>
+                <div class="tech-stack">
+                    <div class="tech-badge">Figma <div class="tech-progress"><div class="tech-progress-bar" style="width: 80%"></div></div></div>
+                    <div class="tech-badge">JavaScript <div class="tech-progress"><div class="tech-progress-bar" style="width: 50%"></div></div></div>
+                    <div class="tech-badge">HTML/CSS <div class="tech-progress"><div class="tech-progress-bar" style="width: 60%"></div></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2>Let's Connect</h2>
+        <div class="contact-info">
+            <p>I'm always open to discussing new opportunities, collaborating on exciting projects, or just having a conversation about technology and design.</p>
+            <div class="contact-links">
+                <a href="mailto:nkanta200@gmail.com" class="contact-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 12.713l11.985-8.57A2 2 0 0022 3H2a2 2 0 00-1.985 1.143L12 12.713zm0 2.573L.15 6.586A2 2 0 000 8v12a2 2 0 002 2h20a2 2 0 002-2V8a2 2 0 00-.15-1.414L12 15.286z"/></svg>
+                    Email Me
+                </a>
+                <a href="https://github.com/micheal-p" class="contact-link" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 002 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.12-1.47-1.12-1.47-.92-.62.07-.61.07-.61 1.02.07 1.56 1.05 1.56 1.05.91 1.56 2.39 1.11 2.97.85.09-.66.35-1.11.63-1.36-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.26.1-2.63 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0112 6.8c.85 0 1.71.11 2.52.33 1.91-1.3 2.75-1.03 2.75-1.03.55 1.37.2 2.38.1 2.63.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.56 4.94.36.31.56.94.56 1.53v2.27c0 .27.16.58.67.5A10 10 0 0022 12 10 10 0 0012 2z"/></svg>
+                    GitHub
+                </a>
+                <a href="tel:+2349029909781" class="contact-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.24 1.02l-2.2 2.2z"/></svg>
+                    Call Me
+                </a>
+                <a href="https://t.me/09029909781" class="contact-link" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
+                    Telegram
+                </a>
+                <a href="https://x.com/aniethegreatest" class="contact-link" target="_blank">
+                     <img src="twitter-x-seeklogo.png" alt="X" style="width: 24px; height: 24px; vertical-align: middle;">
+
+                </a>
+                <a href="https://wa.me/+2349029909781" class="contact-link" target="_blank">
+                    <img src="whatsapp-seeklogo.png" alt="whatsApp" style="width: 24px; height: 24px; vertical-align: middle;">
+
+                    WhatsApp
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleMenu() {
+            const burgerMenu = document.querySelector('.burger-menu');
+            const mobileNav = document.querySelector('.mobile-nav');
+            
+            burgerMenu.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const burgerMenu = document.querySelector('.burger-menu');
+            const mobileNav = document.querySelector('.mobile-nav');
+            
+            if (!burgerMenu.contains(event.target) && !mobileNav.contains(event.target)) {
+                burgerMenu.classList.remove('active');
+                mobileNav.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Dynamic Island hover effect
+        const dynamicIsland = document.querySelector('.dynamic-island');
+        let hoverTimeout;
+
+        dynamicIsland.addEventListener('mouseenter', function() {
+            clearTimeout(hoverTimeout);
+            this.style.transform = 'translateX(-50%) scale(1.05)';
+            this.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
+        });
+
+        dynamicIsland.addEventListener('mouseleave', function() {
+            hoverTimeout = setTimeout(() => {
+                this.style.transform = 'translateX(-50%) scale(1)';
+                this.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
+            }, 100);
+        });
+
+        // Fade-in animation for sections on scroll
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
