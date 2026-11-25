@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nkanta Aniebiet Pius</title>
+    <title>Nkanta Aniebiet Pius, Systems Architect and Software Engineer, Lagos</title>
     <meta name="description" content="Software engineer and systems architect in Lagos. Multi-tenant platforms, national energy data systems, health records and production web apps. Architecture, consultancy and sole engineer builds.">
     <meta property="og:title" content="Nkanta Aniebiet Pius">
     <meta property="og:description" content="Software engineer and systems architect in Lagos. Multi-tenant platforms, national energy data systems, health records and production web apps.">
@@ -29,7 +29,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; scroll-padding-top: 84px; }
         body {
             font-family: var(--sans);
             background: var(--paper);
@@ -91,7 +91,8 @@
         nav a.cta:hover { background: var(--accent); color: #fff; }
 
         /* Sections */
-        section { min-height: 100vh; display: flex; align-items: center; padding: calc(var(--nav-h) + 24px) 0 40px; }
+        section { position: relative; min-height: 100vh; display: flex; align-items: center; padding: calc(var(--nav-h) + 24px) 0 40px; }
+        #work, #services, #about, #experience, #contact { min-height: 0; padding-top: calc(var(--nav-h) + 48px); padding-bottom: 96px; }
         .kicker {
             font-size: 12px;
             font-weight: 600;
@@ -202,7 +203,7 @@
         .more a:hover { color: var(--accent); border-color: var(--accent); }
 
         .preview {
-            position: sticky; top: calc(var(--nav-h) + 24px);
+            position: sticky; top: calc(var(--nav-h) + 24px); position: -webkit-sticky; top: calc(var(--nav-h) + 24px);
             border-radius: 14px;
             overflow: hidden;
             background: var(--paper-2);
@@ -274,6 +275,28 @@
         footer { margin-top: 32px; font-size: 13px; color: var(--muted); display: flex; justify-content: space-between; gap: 16px; }
         footer i { font-family: var(--serif); font-size: 15px; color: var(--ink); }
 
+        
+        /* Services offers */
+        .offers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 26px; }
+        .offer { border: 1px solid var(--line); border-radius: 16px; padding: 24px; background: #fffdf7; transition: transform .25s, box-shadow .25s; }
+        .offer:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(22,20,17,.08); }
+        .offer .ic { width: 42px; height: 42px; border-radius: 12px; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+        .offer .ic svg { width: 20px; height: 20px; }
+        .offer h3 { font-family: var(--serif); font-weight: 500; font-size: 22px; margin-bottom: 8px; }
+        .offer p { font-size: 14px; color: var(--muted); }
+        .section-head { margin-bottom: 36px; }
+
+        
+        /* Carousel chrome */
+        .preview .ctr { position: absolute; top: 14px; left: 14px; right: 14px; display: flex; justify-content: space-between; align-items: center; pointer-events: none; z-index: 3; }
+        .preview .ctr .count { font-size: 12px; font-weight: 600; letter-spacing: .08em; background: rgba(246,243,236,.92); padding: 6px 10px; border-radius: 999px; backdrop-filter: blur(6px); }
+        .preview .arrows { display: flex; gap: 8px; pointer-events: auto; }
+        .preview .arrows button { width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: rgba(246,243,236,.92); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s, color .2s, transform .2s; }
+        .preview .arrows button:hover { background: var(--ink); color: var(--paper); transform: translateY(-1px); }
+        .preview .arrows svg { width: 16px; height: 16px; }
+        .preview .prog { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,.22); z-index: 3; }
+        .preview .prog i { display: block; height: 100%; background: var(--accent); width: 0%; }
+
         /* Reveal on scroll */
         .rv { opacity: 0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
         .rv.in { opacity: 1; transform: none; }
@@ -284,7 +307,15 @@
         @media (max-width: 860px) {
             :root { --nav-h: 58px; }
             .wrap { padding: 0 20px; }
-            nav ul { gap: 18px; }
+            nav ul { display: none; }
+        .burger { display: flex; }
+        .mmenu { display: block; position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 99; background: var(--paper); border-bottom: 1px solid var(--line); padding: 16px 20px 20px; transform: translateY(-8px); opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; }
+        body.menu-open .mmenu { opacity: 1; transform: none; pointer-events: auto; }
+        .mmenu a { display: flex; align-items: center; justify-content: space-between; padding: 14px 4px; font-size: 18px; font-weight: 600; border-bottom: 1px solid var(--line); }
+        .mmenu a:last-child { border-bottom: 0; }
+        .mmenu a small { font-size: 13px; font-weight: 500; color: var(--muted); }
+        .scroll-hint { display: none; }
+        .offers { grid-template-columns: 1fr; }
             nav a { font-size: 13px; }
             nav a.cta, nav .hide-m { display: none; }
             .mark { font-size: 21px; }
@@ -307,8 +338,8 @@
             .facts strong { font-size: 26px; }
             .facts small { font-size: 12px; }
 
-            .work-grid { grid-template-columns: 1fr; gap: 0; }
-            .preview { display: none; }
+            .work-grid { grid-template-columns: 1fr; gap: 22px; }
+            .preview { display: block; aspect-ratio: 16/11; }
             .index a { grid-template-columns: 64px 1fr auto; gap: 14px; align-items: center; padding: 12px 0; }
             .index .num { display: none; }
             .index .thumb {
@@ -356,14 +387,24 @@
             <nav aria-label="Primary">
                 <ul>
                     <li><a href="#work">Work</a></li>
+                    <li><a href="#services">Services</a></li>
                     <li><a href="#about">About</a></li>
                     <li class="hide-m"><a href="#experience">Experience</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a class="cta" href="https://github.com/micheal-p" target="_blank" rel="noopener">GitHub</a></li>
                 </ul>
             </nav>
+            <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i><i></i></button>
         </div>
     </header>
+    <div class="mmenu" id="mmenu">
+<a href="#work">Work <small>11 projects</small></a>
+<a href="#services">Services <small>Architecture, consultancy</small></a>
+<a href="#about">About <small>The engineer</small></a>
+<a href="#experience">Experience <small>Roles and timeline</small></a>
+<a href="#contact">Contact <small>Write to me</small></a>
+<a href="https://github.com/micheal-p" target="_blank" rel="noopener">GitHub <small>micheal-p</small></a>
+</div>
 
     <!-- Home -->
     <section id="home" class="hero">
@@ -388,6 +429,7 @@
                 <div><strong>2024</strong><small>BSc Computer Science, Caleb</small></div>
             </div>
         </div>
+    <a class="scroll-hint" href="#work">Scroll <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
     </section>
 
     <!-- Work -->
@@ -469,6 +511,36 @@
             <div class="frame" id="p-elogbook"><img src="shots/elogbook.webp" alt="" loading="lazy"><span class="cap">Caleb E-Logbook</span></div>
                     <div class="frame" id="p-facevault"><img src="shots/facevault.webp" alt="" loading="lazy"><span class="cap">Face Vault</span></div>
                     <div class="frame" id="p-gridos"><div class="tile"><b>GridOS</b><span>Power flow, transformer heat and battery physics on the IEEE 33 bus network, with smart queueing to keep the lights on.</span></div><span class="cap">github.com/micheal-p/GridOS</span></div>
+                    <div class="ctr"><span class="count" id="ctrCount">01 / 11</span><span class="arrows"><button id="prevBtn" aria-label="Previous project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></button><button id="nextBtn" aria-label="Next project"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button></span></div>
+                    <div class="prog"><i id="progBar"></i></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services">
+        <div class="wrap">
+            <div class="kicker">Services <span>what to hire me for</span></div>
+            <div class="section-head rv">
+                <h2 class="display">Ways to work with <em>me.</em></h2>
+                <p class="lede">Three shapes of engagement. Every build ships live, hosted and documented, not handed over as a zip.</p>
+            </div>
+            <div class="offers">
+                <div class="offer rv">
+                    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 7v6c0 5 4 8 9 9 5-1 9-4 9-9V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg></div>
+                    <h3>System architecture</h3>
+                    <p>Data models, multi-tenant boundaries, access control and deployment topology for platforms that must hold up under real load and real scrutiny.</p>
+                </div>
+                <div class="offer rv">
+                    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
+                    <h3>Software consultancy</h3>
+                    <p>Security review, stack decisions, code quality and production readiness. I read your system end to end and tell you what will break first.</p>
+                </div>
+                <div class="offer rv">
+                    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                    <h3>Team leadership</h3>
+                    <p>Technical leadership for small product teams, five engineers at Norgroup and counting. Stack, security posture and code quality, owned in one place.</p>
                 </div>
             </div>
         </div>
@@ -608,18 +680,57 @@
 
     <script>
         (function () {
-            // Work index: hover or focus swaps the sticky preview
-            var rows = document.querySelectorAll('#index a');
-            var frames = document.querySelectorAll('#preview .frame');
-            function show(row) {
-                rows.forEach(function (r) { r.classList.toggle('is-active', r === row); });
-                var id = row.getAttribute('data-preview');
-                frames.forEach(function (f) { f.classList.toggle('on', f.id === id); });
-            }
-            rows.forEach(function (r) {
-                r.addEventListener('mouseenter', function () { show(r); });
-                r.addEventListener('focus', function () { show(r); });
+            var hdr = document.getElementById('hdr');
+            window.addEventListener('scroll', function(){hdr.classList.toggle('scrolled', window.scrollY > 8)}, {passive:true});
+            var burger = document.getElementById('burger');
+            burger.addEventListener('click', function(){
+                var open = document.body.classList.toggle('menu-open');
+                burger.setAttribute('aria-expanded', open ? 'true' : 'false');
             });
+            document.querySelectorAll('.mmenu a').forEach(function(a){ a.addEventListener('click', function(){ document.body.classList.remove('menu-open'); }); });
+
+            var rows = Array.prototype.slice.call(document.querySelectorAll('#index a'));
+            var frames = Array.prototype.slice.call(document.querySelectorAll('#preview .frame'));
+            var countEl = document.getElementById('ctrCount');
+            var prog = document.getElementById('progBar');
+            var cur = 0, raf = null, startT = 0;
+            var DURATION = 3800;
+            function pad(n){ return (n < 10 ? '0' : '') + n; }
+            function render(){
+                rows.forEach(function(r,i){ r.classList.toggle('is-active', i === cur); });
+                frames.forEach(function(f,i){ f.classList.toggle('on', i === cur); });
+                countEl.textContent = pad(cur + 1) + ' / ' + pad(frames.length);
+            }
+            function tick(now){
+                var p = (now - startT) / DURATION;
+                if (p >= 1) { go(cur + 1); return; }
+                prog.style.width = (p * 100) + '%';
+                raf = requestAnimationFrame(tick);
+            }
+            function startTimer(){ cancelAnimationFrame(raf); startT = performance.now(); raf = requestAnimationFrame(tick); }
+            function go(i){ cur = ((i % frames.length) + frames.length) % frames.length; render(); startTimer(); }
+            function show(row){
+                var id = row.getAttribute('data-preview');
+                var idx = frames.findIndex(function(f){ return f.id === id; });
+                if (idx >= 0) go(idx);
+            }
+            rows.forEach(function(r){
+                r.addEventListener('mouseenter', function(){ show(r); });
+                r.addEventListener('focus', function(){ show(r); });
+            });
+            document.getElementById('prevBtn').addEventListener('click', function(){ go(cur - 1); });
+            document.getElementById('nextBtn').addEventListener('click', function(){ go(cur + 1); });
+            var car = document.getElementById('preview'), startX = null;
+            car.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; }, {passive:true});
+            car.addEventListener('touchend', function(e){
+                if (startX === null) return;
+                var dx = e.changedTouches[0].clientX - startX;
+                if (Math.abs(dx) > 40) go(cur + (dx < 0 ? 1 : -1));
+                startX = null;
+            }, {passive:true});
+            document.addEventListener('keydown', function(e){ if(e.key==='ArrowRight') go(cur+1); if(e.key==='ArrowLeft') go(cur-1); });
+            document.addEventListener('visibilitychange', function(){ if (document.hidden) cancelAnimationFrame(raf); else startTimer(); });
+            render(); startTimer();
 
             // Nav highlight
             var links = document.querySelectorAll('nav a[href^="#"]');
@@ -642,6 +753,7 @@
             } else {
                 els.forEach(function (el) { el.classList.add('in'); });
             }
+            setTimeout(function(){ document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('in'); }); }, 1200);
         })();
     </script>
 </body>
