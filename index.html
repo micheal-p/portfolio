@@ -116,6 +116,7 @@
         .lede { font-size: 17px; color: var(--muted); max-width: 560px; }
 
         /* Hero */
+        .hero { padding-bottom: 88px; } .hero .wrap { padding-bottom: 8px; }
         .hero .wrap { display: grid; grid-template-columns: 1.25fr .75fr; gap: 56px; align-items: center; }
         .hero .tag { font-size: 14px; font-weight: 500; color: var(--muted); margin-bottom: 26px; display: flex; align-items: center; gap: 10px; }
         .hero .tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
@@ -152,7 +153,7 @@
         .portrait { display: flex; justify-content: center; }
         .portrait .disc {
             position: relative;
-            width: min(40vh, 380px); height: min(40vh, 380px);
+            width: min(46vh, 430px); height: min(46vh, 430px);
             border-radius: 50%;
             background: var(--paper-2);
             display: flex; align-items: center; justify-content: center;
@@ -177,39 +178,35 @@
         .facts small { font-size: 14px; color: var(--muted); }
 
         /* Work */
-        .work-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: start; }
+        .work-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 48px; align-items: start; }
         .work-grid h2.display { font-size: clamp(34px, 3.6vw, 48px); }
         .index { border-top: 1px solid var(--line); }
-        .index a {
-            display: grid;
-            grid-template-columns: 34px 1fr auto;
-            gap: 18px;
-            align-items: baseline;
-            padding: 11px 0;
+        .index a { display: grid; grid-template-columns: 32px 1fr auto; gap: 14px; align-items: baseline; padding: 9px 0;
             border-bottom: 1px solid var(--line);
             transition: padding-left .25s ease;
         }
         .index a:hover, .index a.is-active { padding-left: 8px; }
         .index .num { font-family: var(--serif); font-style: italic; font-size: 15px; color: var(--muted); }
-        .index .name { font-family: var(--serif); font-weight: 500; font-size: 23px; line-height: 1.1; letter-spacing: -.015em; }
-        .index .meta { display: block; font-size: 13px; color: var(--muted); margin-top: 3px; }
+        .index .name { font-family: var(--serif); font-weight: 500; font-size: 20px; line-height: 1.1; letter-spacing: -.015em; }
+        .index .meta { display: block; font-size: 12px; color: var(--muted); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
         .index a:hover .name, .index a.is-active .name { color: var(--accent); }
         .index .go { font-size: 13px; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
         .index .go svg { width: 14px; height: 14px; transition: transform .25s ease; }
         .index a:hover .go svg, .index a.is-active .go svg { transform: translateX(3px); }
         .index a:hover .go, .index a.is-active .go { color: var(--ink); }
+        @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(31,93,58,.35); } 50% { box-shadow: 0 0 0 6px rgba(31,93,58,0); } }
+        .sh-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 1.8s ease-in-out infinite; }
         .more { margin-top: 14px; font-size: 14px; color: var(--muted); }
+        .index a.extra { display: none; }
+        .index.expanded a.extra { display: grid; }
+        .show-more { margin-top: 16px; display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); background: none; border: 1px solid var(--line); border-radius: 999px; padding: 10px 18px; cursor: pointer; transition: background .2s, color .2s; }
+        .show-more:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+        .show-more .chev { width: 14px; height: 14px; transition: transform .25s ease; }
+        .index.expanded ~ .show-more .chev { transform: rotate(180deg); }
         .more a { color: var(--ink); border-bottom: 1px solid var(--ink); }
         .more a:hover { color: var(--accent); border-color: var(--accent); }
 
-        .preview {
-            position: sticky; top: calc(var(--nav-h) + 24px); position: -webkit-sticky; top: calc(var(--nav-h) + 24px);
-            border-radius: 14px;
-            overflow: hidden;
-            background: var(--paper-2);
-            border: 1px solid var(--line);
-            aspect-ratio: 16 / 10;
-        }
+        .preview { position: sticky; top: calc(var(--nav-h) + 24px); position: -webkit-sticky; top: calc(var(--nav-h) + 24px); border-radius: 18px; overflow: hidden; background: var(--paper-2); border: 1px solid var(--line); aspect-ratio: 16 / 9.2; box-shadow: 0 24px 60px rgba(22,20,17,.14); }
         .preview .frame {
             position: absolute; inset: 0;
             opacity: 0; transition: opacity .35s ease;
@@ -252,11 +249,18 @@
 
         /* Experience */
         .rows { border-top: 1px solid var(--line); }
-        .row { display: grid; grid-template-columns: 170px 1fr; gap: 28px; padding: 20px 0; border-bottom: 1px solid var(--line); }
+        .row { display: grid; grid-template-columns: 200px 1fr; gap: 32px; padding: 20px 0; border-bottom: 1px solid var(--line); align-items: start; }
         .row .when { font-family: var(--serif); font-style: italic; font-size: 16px; color: var(--muted); padding-top: 2px; }
         .row h3 { font-family: var(--serif); font-weight: 500; font-size: 24px; line-height: 1.1; letter-spacing: -.015em; }
         .row .org { font-size: 14px; color: var(--muted); margin: 4px 0 8px; }
         .row p { font-size: 15px; color: var(--ink-2); max-width: 680px; }
+
+        .more-detail { margin-top: 10px; font-size: 14px; color: var(--muted); }
+        .more-detail summary { cursor: pointer; font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); list-style: none; display: inline-flex; align-items: center; gap: 6px; padding: 6px 0; }
+        .more-detail summary::-webkit-details-marker { display: none; }
+        .more-detail summary::after { content: '+'; font-size: 16px; line-height: 1; font-weight: 400; }
+        .more-detail[open] summary::after { content: '−'; }
+        .more-detail p { margin-top: 6px; color: var(--ink-2); max-width: 680px; }
 
         /* Contact */
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
@@ -302,6 +306,8 @@
         .rv.in { opacity: 1; transform: none; }
         @media (prefers-reduced-motion: reduce) { .rv { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
 
+        .scroll-hint { position: absolute; right: 24px; bottom: 24px; display: inline-flex; align-items: center; gap: 10px; color: var(--ink-2); font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; background: rgba(246,243,236,.85); border: 1px solid var(--line); border-radius: 999px; padding: 9px 16px; backdrop-filter: blur(8px); }
+
         /* Phone: its own layout */
         .mbar { display: none; }
         @media (max-width: 860px) {
@@ -314,7 +320,6 @@
         .mmenu a { display: flex; align-items: center; justify-content: space-between; padding: 14px 4px; font-size: 18px; font-weight: 600; border-bottom: 1px solid var(--line); }
         .mmenu a:last-child { border-bottom: 0; }
         .mmenu a small { font-size: 13px; font-weight: 500; color: var(--muted); }
-        .scroll-hint { display: none; }
         .offers { grid-template-columns: 1fr; }
             nav a { font-size: 13px; }
             nav a.cta, nav .hide-m { display: none; }
@@ -365,6 +370,7 @@
             .contact-grid { grid-template-columns: 1fr; gap: 20px; }
             footer { flex-direction: column; gap: 6px; margin-top: 24px; }
 
+            .scroll-hint { left: 20px; right: auto; bottom: 84px; }
             .mbar {
                 display: flex; gap: 10px;
                 position: fixed; left: 0; right: 0; bottom: 0; z-index: 100;
@@ -429,7 +435,7 @@
                 <div><strong>2024</strong><small>BSc Computer Science, Caleb</small></div>
             </div>
         </div>
-    <a class="scroll-hint" href="#work">Scroll <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+    <a class="scroll-hint" href="#work" aria-label="Scroll to selected work"><span class="sh-dot" aria-hidden="true"></span><span>Scroll</span></a>
     </section>
 
     <!-- Work -->
@@ -471,32 +477,33 @@
             <span><span class="name">Lira Threads</span><span class="meta">Kids fashion store, Paystack checkout, order tracking. Next.js, Supabase</span></span>
             <span class="go"><span>lirathread.com</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         </a>
-        <a href="https://www.miziediwillofgod.com" target="_blank" rel="noopener" data-preview="p-miziedi">
+        <a href="https://www.miziediwillofgod.com" target="_blank" rel="noopener" data-preview="p-miziedi" class="extra">
             <span class="num">07</span><span class="thumb"><img src="shots/miziedi.webp" alt=""></span>
             <span><span class="name">Miziedi</span><span class="meta">Premium e-commerce, Paystack, PDF invoicing. PHP, MongoDB</span></span>
             <span class="go"><span>miziediwillofgod.com</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         </a>
-        <a href="https://neif.com.ng" target="_blank" rel="noopener" data-preview="p-neif">
+        <a href="https://neif.com.ng" target="_blank" rel="noopener" data-preview="p-neif" class="extra">
             <span class="num">08</span><span class="thumb"><img src="shots/neif.webp" alt=""></span>
             <span><span class="name">NEIF</span><span class="meta">Nigeria Energy Investment Forum site and delegate registration. PHP, SQLite</span></span>
             <span class="go"><span>neif.com.ng</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
         </a>
-        <a href="https://e-logbook-theta.vercel.app" target="_blank" rel="noopener" data-preview="p-elogbook">
+        <a href="https://e-logbook-theta.vercel.app" target="_blank" rel="noopener" data-preview="p-elogbook" class="extra">
                             <span class="num">09</span><span class="thumb"><img src="shots/elogbook.webp" alt=""></span>
                             <span><span class="name">Caleb E-Logbook</span><span class="meta">SIWES logbook, five roles enforced in the DB. Nuxt, Supabase</span></span>
                             <span class="go"><span>Live app</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
                         </a>
-                        <a href="https://face-vault-show.vercel.app" target="_blank" rel="noopener" data-preview="p-facevault">
+                        <a href="https://face-vault-show.vercel.app" target="_blank" rel="noopener" data-preview="p-facevault" class="extra">
                             <span class="num">10</span><span class="thumb"><img src="shots/facevault.webp" alt=""></span>
                             <span><span class="name">Face Vault</span><span class="meta">Face unlocks files, intruders photographed. Flask, OpenCV</span></span>
                             <span class="go"><span>Case study</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
                         </a>
-                        <a href="https://github.com/micheal-p/GridOS" target="_blank" rel="noopener" data-preview="p-gridos">
+                        <a href="https://github.com/micheal-p/GridOS" target="_blank" rel="noopener" data-preview="p-gridos" class="extra">
                             <span class="num">11</span><span class="thumb"></span>
                             <span><span class="name">GridOS</span><span class="meta">EV charging on the IEEE 33 bus grid, smart queueing. Python</span></span>
                             <span class="go"><span>Repository</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></span>
                         </a>
                     </div>
+                    <button class="show-more" id="showMoreBtn" type="button" aria-expanded="false">Show all work <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
                     <p class="more">Also MyHR, ICRH, Ocean Glory ERP and GridOS research. <a href="https://github.com/micheal-p?tab=repositories" target="_blank" rel="noopener">All repositories</a></p>
                 </div>
                 <div class="preview rv" id="preview" aria-hidden="true">
@@ -573,22 +580,23 @@
         <div class="wrap">
             <div class="kicker">Experience</div>
             <h2 class="display rv">Where I have <em>worked.</em></h2>
-            <div class="rows rv" style="margin-top:22px">
+                        <div class="rows rv" style="margin-top:22px">
                 <div class="row">
-                    <div class="row">
-                <div class="when">2026 to present</div>
-                <div>
-                    <h3>Sole Engineer, AI and Policy Startup</h3>
-                    <div class="org">AI, government and policy venture, Lagos</div>
-                    <p>Building the full product as the only engineer, from architecture and data model to deployment. Focus on AI systems for public sector and policy workflows.</p>
+                    <div class="when">2026 to present</div>
+                    <div>
+                        <h3>Sole Engineer, AI and Policy Startup</h3>
+                        <div class="org">AI, government and policy venture, Lagos</div>
+                        <p>Building the full product as the only engineer, from architecture and data model to deployment. Focus on AI systems for public sector and policy workflows.</p>
+                        <details class="more-detail"><summary>More detail</summary><p>Own the whole stack alone, product design through infra, so decisions ship without handoff loss. AI grounded in public data, with audit trails policy teams can defend.</p></details>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="when">Jan 2026 to present</div>
+                <div class="row">
+                    <div class="when">Jan 2026 to present</div>
                     <div>
                         <h3>Technology Team Lead</h3>
                         <div class="org">Norgroup Ltd, Lagos</div>
                         <p>Technical lead for the company's digital product portfolio, including a platform delivered with Nigerian federal government stakeholders. I coordinate a team of five across backend, frontend and product design, and own the decisions on stack, security posture and code quality.</p>
+                        <details class="more-detail"><summary>More detail</summary><p>Multi tenant platform work, national energy data systems and client products, taken from data model through deployment, payments and security review.</p></details>
                     </div>
                 </div>
                 <div class="row">
@@ -597,6 +605,7 @@
                         <h3>Store Operations Assistant, NYSC</h3>
                         <div class="org">Studio Press Nigeria Ltd, Lagos</div>
                         <p>Managed inventory operations on SAP, validating stock movement requests and goods receipt notes at 98 percent accuracy. Certificate of National Service issued January 2026.</p>
+                        <details class="more-detail"><summary>More detail</summary><p>High volume reconciliation work, process discipline carried into engineering practice, accuracy under audit.</p></details>
                     </div>
                 </div>
                 <div class="row">
@@ -605,6 +614,7 @@
                         <h3>Lead UI/UX Developer</h3>
                         <div class="org">ZestRein Ltd, Lagos</div>
                         <p>Led design projects for small businesses, drafted product requirement documents and ran the product lifecycle from idea to deployment.</p>
+                        <details class="more-detail"><summary>More detail</summary><p>Early product craft, requirements to launch, the habit that later became team leadership.</p></details>
                     </div>
                 </div>
                 <div class="row">
@@ -613,6 +623,7 @@
                         <h3>Industrial Trainee, SIWES</h3>
                         <div class="org">Nigerian Breweries Plc</div>
                         <p>Enterprise IT support, networking and system operations in a large industrial environment.</p>
+                        <details class="more-detail"><summary>More detail</summary><p>Production systems at scale, uptime mindset, incident handling, first exposure to enterprise reliability.</p></details>
                     </div>
                 </div>
             </div>
@@ -731,6 +742,17 @@
             document.addEventListener('keydown', function(e){ if(e.key==='ArrowRight') go(cur+1); if(e.key==='ArrowLeft') go(cur-1); });
             document.addEventListener('visibilitychange', function(){ if (document.hidden) cancelAnimationFrame(raf); else startTimer(); });
             render(); startTimer();
+
+            // Show more / less for work index
+            var idxEl = document.getElementById('index');
+            var smBtn = document.getElementById('showMoreBtn');
+            if (idxEl && smBtn) {
+                smBtn.addEventListener('click', function(){
+                    var open = idxEl.classList.toggle('expanded');
+                    smBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                    smBtn.firstChild.textContent = open ? 'Show less ' : 'Show all work ';
+                });
+            }
 
             // Nav highlight
             var links = document.querySelectorAll('nav a[href^="#"]');
